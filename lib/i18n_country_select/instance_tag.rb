@@ -21,7 +21,7 @@ module I18nCountrySelect
 
       if priority_countries
         countries += options_for_select(priority_countries, selected)
-        #countries += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+        countries += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
       end
 
       countries = countries + options_for_select(country_translations, selected)
@@ -35,15 +35,14 @@ module I18nCountrySelect
     def country_translations
       Thread.current[:country_translations] ||= {}
       Thread.current[:country_translations][I18n.locale] ||= begin
-
-        (I18n.t 'countries').keys.map do |code|
+        my_conuntries = ['TW', 'US', 'CN']
+        my_conuntries.keys.map do |code|
           translation = I18n.t(code, :scope => :countries, :default => 'missing')
           translation == 'missing' ? nil : [translation, code]
           #puts code.to_s + "_" + translation.to_s
         end.compact.sort_by do |translation, code|
-          if code == 'US' || code == 'TW' || code == 'CN'
-            normalize_translation(translation)
-          end
+
+          normalize_translation(translation)
           #puts "translation: " + translation.to_s
         end
       end
