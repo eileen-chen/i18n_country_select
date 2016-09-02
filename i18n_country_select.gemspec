@@ -5,7 +5,7 @@ require "i18n_country_select/version"
 
 # encoding: utf-8
 Gem::Specification.new do |s|
-  s.name         = "my_country_select"
+  s.name         = "i18n_country_select"
   s.version     = I18nCountrySelect::VERSION
   s.authors      = ["Brian McQuay (brian@onomojo.com)"]
   s.email        = "brian@onomojo.com"
