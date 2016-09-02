@@ -36,9 +36,10 @@ module I18nCountrySelect
       Thread.current[:country_translations] ||= {}
       Thread.current[:country_translations][I18n.locale] ||= begin
         (I18n.t 'countries').keys.map do |code|
-          if code == 'CN' || code == 'US' || code == 'TW'
+          if code == 'CN' || code == 'US' || code == ''
             translation = I18n.t(code, :scope => :countries, :default => 'missing')
             translation == 'missing' ? nil : [translation, code]
+          end
           #puts code.to_s + "_" + translation.to_s
         end.compact.sort_by do |translation, code|
           normalize_translation(translation)
