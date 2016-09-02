@@ -21,7 +21,7 @@ module I18nCountrySelect
 
       if priority_countries
         countries += options_for_select(priority_countries, selected)
-        countries += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+        #countries += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
       end
 
       countries = countries + options_for_select(country_translations, selected)
@@ -41,9 +41,9 @@ module I18nCountrySelect
           translation == 'missing' ? nil : [translation, code]
           #puts code.to_s + "_" + translation.to_s
         end.compact.sort_by do |translation, code|
-          puts translation
-          puts code
-          normalize_translation(translation)
+          if code == 'US' || code == 'TW' || code == 'CN'
+            normalize_translation(translation)
+          end
           #puts "translation: " + translation.to_s
         end
       end
