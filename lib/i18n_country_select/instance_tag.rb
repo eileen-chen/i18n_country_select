@@ -16,8 +16,6 @@ module I18nCountrySelect
 
       if options.present? and options[:include_blank]
         option = options[:include_blank] == true ? "" : options[:include_blank]
-        puts "-------------------------"
-        puts option
         countries += "<option>#{option}</option>\n"
       end
 
@@ -38,8 +36,9 @@ module I18nCountrySelect
       Thread.current[:country_translations] ||= {}
       Thread.current[:country_translations][I18n.locale] ||= begin
         (I18n.t 'countries').keys.map do |code|
-          translation = I18n.t(code, :scope => :countries, :default => 'missing')
-          translation == 'missing' ? nil : [translation, code]
+          if code == 'CN' || code == 'US' || code == 'TW'
+            translation = I18n.t(code, :scope => :countries, :default => 'missing')
+            translation == 'missing' ? nil : [translation, code]
           #puts code.to_s + "_" + translation.to_s
         end.compact.sort_by do |translation, code|
           normalize_translation(translation)
