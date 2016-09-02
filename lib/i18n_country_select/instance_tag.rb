@@ -35,9 +35,7 @@ module I18nCountrySelect
     def country_translations
       Thread.current[:country_translations] ||= {}
       Thread.current[:country_translations][I18n.locale] ||= begin
-        my_conuntries = ['TW', 'US', 'CN']
-        puts (I18n.t 'countries')
-        (I18n.t 'countries').keys.map do |code|
+        (I18n.t 'countries').slice("CN", "TW", "US").keys.map do |code|
           translation = I18n.t(code, :scope => :countries, :default => 'missing')
           translation == 'missing' ? nil : [translation, code]
           #puts code.to_s + "_" + translation.to_s
