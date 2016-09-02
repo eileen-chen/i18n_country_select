@@ -29,7 +29,7 @@ module I18nCountrySelect
       html_options = html_options.stringify_keys
       add_default_name_and_id(html_options)
 
-      content_tag(:select, class: "chzn-select", countries.html_safe, html_options)
+      content_tag(:select, countries.html_safe, html_options)
     end
 
     def country_translations
