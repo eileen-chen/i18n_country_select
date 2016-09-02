@@ -38,10 +38,10 @@ module I18nCountrySelect
         (I18n.t 'countries').keys.map do |code|
           translation = I18n.t(code, :scope => :countries, :default => 'missing')
           translation == 'missing' ? nil : [translation, code]
-          puts code + "_" + translation
+          puts code.to_s + "_" + translation.to_s
         end.compact.sort_by do |translation, code|
           normalize_translation(translation)
-          puts "translation: " + translation
+          puts "translation: " + translation.to_s
         end
       end
     end
