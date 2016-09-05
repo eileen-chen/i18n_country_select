@@ -35,6 +35,7 @@ module I18nCountrySelect
     def country_translations
       Thread.current[:country_translations] ||= {}
       Thread.current[:country_translations][I18n.locale] ||= begin
+        byebug
         (I18n.t 'countries').slice(:CN, :TW, :US).keys.map do |code|
           translation = I18n.t(code, :scope => :countries, :default => 'missing')
           translation == 'missing' ? nil : [translation, code]
